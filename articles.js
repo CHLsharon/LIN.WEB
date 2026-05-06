@@ -2,7 +2,7 @@ async function loadArticles() {
   const articleGrid = document.getElementById("articleGrid");
 
   try {
-    const res = await fetch("http://localhost:3000/api/articles");
+    const res = await fetch("https://lin-web.onrender.com/api/chat/articles");
     const articles = await res.json();
 
     articleGrid.innerHTML = "";
