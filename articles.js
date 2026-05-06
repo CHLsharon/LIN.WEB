@@ -2,7 +2,7 @@ async function loadArticles() {
   const articleGrid = document.getElementById("articleGrid");
 
   try {
-    const res = await fetch("/api/articles");
+    const res = await fetch("/api/chat/articles");
     const articles = await res.json();
 
     articleGrid.innerHTML = "";
