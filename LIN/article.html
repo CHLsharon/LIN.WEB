@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>文章閱讀｜共讀 AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="article-reader-page">
+  <!-- 浮動工具列 -->
+  <div id="floatingToolbar" class="floating-toolbar">
+    <button type="button" onclick="applyHighlight()">🖍️ 螢光筆</button>
+    <button type="button" onclick="applyTextColor()">🎨 變色</button>
+    <button type="button" onclick="clearFormat()">✕ 清除</button>
+  </div>
+
+  <!-- 導覽列 -->
+  <header class="reader-top-bar">
+    <a href="articles.html" class="reader-back-btn">← 返回文章列表</a>
+    
+    <div class="reader-title-status">
+        <span class="reader-label">當前文章</span>
+        <strong id="topArticleTitle">載入中...</strong>
+    </div>
+
+    <div class="reader-header-actions">
+        <button class="reader-save-btn" type="button" onclick="saveNote(true)">存檔</button>
+        <button class="reader-finish-btn" type="button" onclick="startQuiz()">完成閱讀</button>
+    </div>
+  </header>
+
+<div id="quizModal" class="quiz-modal hidden">
+    <div class="quiz-modal-content">
+        <div class="quiz-header">
+            <h3>📖 閱讀理解測驗</h3>
+            <button class="quiz-close-x" onclick="closeQuiz()">×</button>
+        </div>
+        <div id="quizBody">
+            <p id="quizQuestion">AI 正在針對文章內容出題中...</p>
+            <div id="quizOptions" class="quiz-options">
+                </div>
+        </div>
+        <div id="quizFeedback" class="quiz-feedback hidden"></div>
+    </div>
+</div>
+  <!-- 主體 -->
+  <main class="reader-container">
+    <!-- 左側：原文 / AI 助手 -->
+    <section class="reader-left-panel">
+      <div class="reader-tab-group">
+        <button class="reader-tab active" type="button" onclick="switchLeftTab('original')">原文內容</button>
+        <button class="reader-tab" type="button" onclick="switchLeftTab('ai')">AI 助手</button>
+      </div>
+
+      <!-- 原文內容 -->
+      <section id="originalContent" class="reader-content-body">
+        <div id="articleContent" class="article-content-embedded">載入中...</div>
+      </section>
+
+      <!-- AI 助手 -->
+      <section id="aiContent" class="reader-content-body hidden">
+        <h3>🤖 AI 閱讀助手</h3>
+        
+        
+        <!-- 顯示 AI 回應 -->
+        <div id="aiResult" class="ai-result">  </div>
+        
+        <!-- 使用者輸入問題 -->
+        <div class="chat-input">
+          <input type="text" id="aiQuestion" placeholder="輸入問題或心得..." />
+          <button class="primary-btn" type="button" onclick="askAI()">送出</button>
+          <button class="primary-btn" type="button" onclick="saveChatToNote()">存到筆記</button>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- 右側：筆記編輯器 -->
+    <section class="note-editor">
+      <div class="note-tools">
+        <div class="tool-group">
+          <label for="noteFontSize">字體</label>
+          <select id="noteFontSize" onchange="applyGlobalStyle()">
+            <option value="18px" selected>18px</option>
+            <option value="22px">22px</option>
+            <option value="26px">26px</option>
+            <option value="30px">30px</option>
+          </select>
+        </div>
+
+        <div class="tool-group">
+          <label for="textColorPicker">顏色</label>
+          <input type="color" id="textColorPicker" value="#2c3e50" />
+          <button class="btn-action" type="button" onclick="applyTextColor()">套用</button>
+        </div>
+
+        <div class="tool-group note-format-actions">
+          <button class="btn-action btn-highlight" type="button" onclick="applyHighlight()">🖍️ 螢光筆</button>
+          <button class="btn-action" type="button" onclick="underlineText()"><u>U</u></button>
+          <button class="btn-action" type="button" onclick="clearFormat()">✕ 清除格式</button>
+        </div>
+      </div>
+
+      <div class="note-content" id="noteBody" contenteditable="true" aria-label="我的閱讀筆記">
+        <b>[我的心得記錄]</b><br />
+        可以在這裡記錄重點、問題或閱讀心得。
+      </div>
+      <div class="save-status" id="saveStatus">尚未儲存</div>
+    </section>
+  </main>
+
+  <script src="article.js?v=20260430-fix"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>登入｜共讀 AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card">
+      <a class="back-link" href="index.html">← 回首頁</a>
+
+      <p class="eyebrow">Welcome Back</p>
+      <h1>登入帳號</h1>
+      <p class="auth-desc">登入後即可使用閱讀紀錄、筆記與 AI 學習助手。</p>
+
+      <form id="loginForm">
+        <label>
+          電子信箱
+          <input type="email" placeholder="請輸入電子信箱" required />
+        </label>
+
+        <label>
+          密碼
+          <input type="password" placeholder="請輸入密碼" required />
+        </label>
+
+        <div class="auth-row">
+          <label class="check-label">
+            <input type="checkbox" />
+            記住我
+          </label>
+          <a href="forgot-password.html">忘記密碼？</a>
+        </div>
+
+        <button class="auth-btn" type="submit">登入</button>
+      </form>
+
+      <p class="auth-switch">
+        還沒有帳號？<a href="register.html">立即註冊</a>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // 使用 ID 抓取表單更安全
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); 
+      console.log("前端：嘗試登入請求");
+
+      // 1. 抓取輸入的資料
+      const email = e.target.querySelector('input[type="email"]').value;
+      const password = e.target.querySelector('input[type="password"]').value;
+
+      try {
+        // 2. 發送登入請求到後端 (請確保後端已開啟並使用 Live Server 啟動網頁)
+        const response = await fetch("http://localhost:3000/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // 儲存使用者資訊到 localStorage
+          localStorage.setItem('userId', data.userId);
+          localStorage.setItem('username', data.username);
+
+          alert(`歡迎回來，${data.username}！`);
+          window.location.href = "index.html";
+        } else {
+          alert(data.message || "登入失敗，請檢查帳號密碼");
+        }
+      } catch (error) {
+        console.error("登入出錯:", error);
+        alert("無法連線至伺服器，請確保後端已啟動。");
+      }
+    });
+  </script>
+</body>
+</html>

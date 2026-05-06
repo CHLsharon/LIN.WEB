@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>文章列表｜共讀 AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">共讀 AI 平台</div>
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="articles.html">文章</a>
+      <a href="accessibility.html">閱讀輔助</a>
+    </nav>
+    <a href="login.html" class="login-btn" style="text-decoration: none;">登入</a>
+  </header>
+
+  <main class="article-page">
+    <section class="page-title">
+      <p class="eyebrow">Reading Library</p>
+      <h1>文章閱讀區</h1>
+      <p>選擇一篇文章開始閱讀，並使用 AI 協助理解內容。</p>
+    </section>
+
+    <section class="article-grid" id="articleGrid"></section>
+  
+  </main>
+  <script src="articles.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginBtn = document.querySelector('.login-btn');
+    const userId = localStorage.getItem('userId');
+    const username = localStorage.getItem('username');
+
+    if (userId) {
+      // 1. 如果有 userId，代表已登入，更新按鈕文字
+      loginBtn.textContent = username ? `👤 ${username}` : '👤 個人帳號';
+      
+      // 2. 點擊按鈕改為登出功能
+      loginBtn.onclick = (e) => {
+        e.preventDefault();
+        if (confirm('確定要登出嗎？')) {
+          localStorage.clear();
+          window.location.href = 'index.html';
+        }
+      };
+    } else {
+      // 3. 如果沒登入，點擊按鈕去登入頁面
+      loginBtn.onclick = () => {
+        window.location.href = 'login.html';
+      };
+    }
+  });
+</script>
+</body>
+</html>

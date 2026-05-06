@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 閱讀平台</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. 抓取 HTML 中的登入按鈕
+    const loginBtn = document.querySelector('.login-btn');
+    
+    // 2. 從 localStorage 取得資料
+    const userId = localStorage.getItem('userId');
+    const username = localStorage.getItem('username');
+
+    // 3. 判斷是否已登入
+    if (userId) {
+      // 顯示使用者名稱（如果註冊/登入時有存 username），否則顯示「個人帳號」
+      loginBtn.textContent = username ? `👤 ${username}` : '👤 個人帳號';
+      
+      // 修改按鈕行為：點擊後去個人檔案頁面或是顯示登出選單
+      // 這裡暫時設定為點擊後詢問是否登出
+      loginBtn.onclick = (e) => {
+        e.preventDefault();
+        if (confirm('您已登入，是否要登出？')) {
+          localStorage.clear(); // 清除所有登入資訊
+          location.reload();    // 重新整理頁面
+        }
+      };
+      
+      // 如果你有寫「個人頁面」，也可以改為跳轉：
+      // loginBtn.setAttribute('href', 'profile.html');
+    } else {
+      // 若未登入，確保它是去登入頁面
+      loginBtn.onclick = () => {
+        window.location.href = 'login.html';
+      };
+    }
+  });
+</script>
+<body>
+  <header class="navbar">
+    <div class="logo">共讀 AI 平台</div>
+
+    <nav>
+      <a href="#">首頁</a>
+      <a href="articles.html">文章</a>
+      <a href="accessibility.html">閱讀輔助</a>
+    </nav>
+
+    <button class="login-btn" onclick="window.location.href='login.html'">登入</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Inclusive Reading Platform</p>
+        <h1>讓每個人都能自在學習的閱讀平台</h1>
+        <p>
+          結合通用設計原則、閱讀輔助工具與 AI，
+          協助使用者理解文章、降低閱讀障礙，並提升學習效率。
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-btn" href="accessibility.html" style="text-decoration: none; display: inline-block;">開始閱讀</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>平台特色</h2>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>通用設計</h3>
+          <p>支援字體大小、行距、高對比與深色模式。</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>閱讀輔助</h3>
+          <p>提供文章摘要、生字提示與重點整理。</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>AI 學習助手</h3>
+          <p>未來可串接 Gemini，產生測驗與分級改寫。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
