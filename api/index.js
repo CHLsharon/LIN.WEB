@@ -126,8 +126,6 @@ app.get("/api/chat/articles/:id", async (req, res) => {
 
     res.json(article);
   } catch (err) {
-    console.error("❌ Get article failed:", err);
-
     res.status(500).json({
       success: false,
       error: err.message,
