@@ -60,7 +60,7 @@
       const password = e.target.querySelectorAll('input[type="password"]')[0].value;
 
       try {
-        const res = await fetch("https://lin-web.onrender.com/api/chat/register", {
+        const res = await fetch("https://lin-web-red.vercel.app/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, email, password })

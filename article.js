@@ -22,7 +22,7 @@ async function loadArticle() {
   if (topTitle) topTitle.textContent = "載入中...";
 
   try {
-    const res = await fetch(`https://lin-web.onrender.com/api/chat/articles/${id}`);
+    const res = await fetch(`https://lin-web-red.vercel.app/articles/${id}`);
     const data = await res.json();
 
     const article = data.data || data;
@@ -104,7 +104,7 @@ async function summarizeArticle() {
   aiResult.innerHTML = "AI 正在整理文章...";
 
   try {
-    const res = await fetch("https://lin-web.onrender.com/api/chat/explain", {
+    const res = await fetch("https://lin-web-red.vercel.app/explain", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -138,7 +138,7 @@ async function askAI() {
   input.value = "";
 
   try {
-    const res = await fetch("https://lin-web.onrender.com/api/chat/explain", {
+    const res = await fetch("https://lin-web-red.vercel.app/explain", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -247,7 +247,7 @@ async function summarizeArticleOnLoad() {
   aiSummary.innerHTML = "AI 正在整理文章重點...";
 
   try {
-    const res = await fetch("https://lin-web.onrender.com/api/chat/explain", {
+    const res = await fetch("https://lin-web-red.vercel.app/explain", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -286,7 +286,7 @@ async function askAI() {
   aiResult.innerHTML = "AI 正在思考中...";
 
   try {
-    const res = await fetch("https://lin-web.onrender.com/api/chat/explain", {
+    const res = await fetch("https://lin-web-red.vercel.app/explain", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -459,7 +459,7 @@ async function initNoteData() {
   if (!userId || !articleId) return;
 
   try {
-    const res = await fetch(`https://lin-web.onrender.com/api/chat/notes/${userId}/${articleId}`);
+    const res = await fetch(`https://lin-web-red.vercel.app/notes/${userId}/${articleId}`);
     const data = await res.json();
     if (data.content) {
       // 將內容塞入你的筆記編輯區 (noteBody)
@@ -488,7 +488,7 @@ async function saveNote(isManual = false) {
   }
 
   try {
-    const res = await fetch("https://lin-web.onrender.com/api/chat/notes/save", {
+    const res = await fetch("https://lin-web-red.vercel.app/notes/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, articleId, content: noteContent })
@@ -522,7 +522,7 @@ async function startQuiz() {
 
   try {
     // 比照 saveNote 的 fetch 格式向後端發送請求
-    const res = await fetch("https://lin-web.onrender.com/api/chat/generate-quiz", {
+    const res = await fetch("https://lin-web-red.vercel.app/generate-quiz", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ 
