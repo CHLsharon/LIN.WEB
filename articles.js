@@ -2,7 +2,7 @@ async function loadArticles() {
   const articleGrid = document.getElementById("articleGrid");
 
   try {
-    const res = await fetch("https://lin-web-red.vercel.app/articles");
+    const res = await fetch("/api/articles");
     const articles = await res.json();
 
     articleGrid.innerHTML = "";
@@ -28,7 +28,8 @@ async function loadArticles() {
       articleGrid.appendChild(card);
     });
   } catch (error) {
-    articleGrid.innerHTML = "<p>載入失敗，請確認後端是否啟動</p>";
+    console.error("Fetch error:", error); // 這行能讓你在瀏覽器按 F12 看到具體錯誤
+    articleGrid.innerHTML = "<p>載入失敗，請確認資料庫連線或後端狀態</p>";
   }
 }
 
