@@ -29,7 +29,7 @@ async function loadArticles() {
     });
   } catch (error) {
     console.error("Fetch error:", error); // 這行能讓你在瀏覽器按 F12 看到具體錯誤
-    articleGrid.innerHTML = "<p>載入失敗，請確認資料庫連線或後端狀態</p>";
+    articleGrid.innerHTML = "<p>載入失敗，請確認資料庫連線或後端狀態!!</p>";
   }
 }
 
