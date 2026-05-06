@@ -123,14 +123,3 @@ app.post("/api/chat/tts", async (req, res) => {
     res.status(500).json({ error: "語音產生失敗" });
   }
 });
-
-// 根目錄測試
-app.get("/", (req, res) => res.send("伺服器運行中！🚀"));
-
-// --- 啟動伺服器 ---
-const PORT = process.env.PORT || 3000;
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-  });
-});
