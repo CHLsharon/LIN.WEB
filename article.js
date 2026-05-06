@@ -15,80 +15,53 @@ let isFocusMode = false;
 // 載入文章
 // ========================
 async function loadArticle() {
-  const id = getArticleId();
-  const container = document.getElementById("articleContent");
-  const topTitle = document.getElementById("topArticleTitle");
+  const params = new URLSearchParams(window.location.search);
+  const articleId = params.get("id");
 
-  if (topTitle) topTitle.textContent = "載入中...";
+  const titleEl = document.getElementById("articleTitle");
+  const contentEl = document.getElementById("articleContent");
+  const currentArticleEl = document.getElementById("currentArticle");
 
   try {
-    const res = await fetch(`https://lin-web-red.vercel.app/articles/${id}`);
-    const data = await res.json();
-
-    const article = data.data || data;
-
-    if (!article) {
-      container.innerHTML = "<p>找不到文章</p>";
-      return;
+    if (!articleId) {
+      throw new Error("網址缺少文章 ID");
     }
 
-    const title =
-      article.title ||
-      article.articleTitle ||
-      article.headline ||
-      "未命名文章";
+    const res = await fetch(`/api/chat/articles/${articleId}`);
+    const data = await res.json();
 
-    const content =
-      article.content ||
-      article.body ||
-      article.text ||
-      "無內容";
+    console.log("單篇文章 API 回傳：", data);
 
-    const category = article.category || "";
-    const readingTime = article.readingTime || article.readTime || "";
+    const article = data.article ? data.article : data;
 
-    currentArticleTitle = title;
+    if (!res.ok || !article || !article.title) {
+      throw new Error(data.error || data.message || "文章資料格式錯誤");
+    }
 
-    if (topTitle) topTitle.textContent = title;
+    window.currentArticle = article;
 
-    container.innerHTML = `
-      <p><small>${category} · ${readingTime}</small></p>
+    if (titleEl) {
+      titleEl.textContent = article.title;
+    }
 
-      <div class="reading-tools">
-        <button onclick="speakArticle()">語音讀取</button>
-        <button onclick="stopSpeak()">停止語音</button>
+    if (currentArticleEl) {
+      currentArticleEl.textContent = article.title;
+    }
 
-        <select id="rateSelect">
-          <option value="0.75">0.75x</option>
-          <option value="1" selected>1.0x</option>
-          <option value="1.25">1.25x</option>
-          <option value="1.5">1.5x</option>
-          <option value="2">2.0x</option>
-        </select>
-
-        <button onclick="changeFontSize(-2)">A-</button>
-        <button onclick="changeFontSize(2)">A+</button>
-
-        <select onchange="changeFontFamily(this.value)">
-          <option value="'Noto Sans TC', sans-serif">預設字型</option>
-          <option value="'Microsoft JhengHei', sans-serif">微軟正黑體</option>
-          <option value="'PMingLiU', serif">新細明體</option>
-        </select>
-        <span id="ttsStatus" style="color:#dc2626;font-weight:700;"></span>
-      </div>
-      <div id="articleBody" class="article-body">
-        ${formatArticleContent(content)}
-      </div>
-    `;
-    initParagraphFocus();
-    summarizeArticleOnLoad();
-
+    if (contentEl) {
+      contentEl.textContent = article.content || "";
+    }
   } catch (error) {
-    console.error(error);
-    container.innerHTML = "<p>載入失敗</p>";
+    console.error("載入單篇文章失敗：", error);
+
+    if (titleEl) titleEl.textContent = "載入失敗";
+    if (currentArticleEl) currentArticleEl.textContent = "載入失敗";
+    if (contentEl) contentEl.textContent = "載入失敗";
   }
 }
+
 loadArticle();
+
 // 整理整篇文章
 async function summarizeArticle() {
   const articleBody = document.getElementById("articleBody");
