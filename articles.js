@@ -3,7 +3,16 @@ async function loadArticles() {
 
   try {
     const res = await fetch("/api/chat/articles");
-    const articles = await res.json();
+    const data = await res.json();
+
+    // ✅ 相容兩種後端格式：
+    // 1. 直接回傳陣列：[...]
+    // 2. 回傳物件：{ success: true, articles: [...] }
+    const articles = Array.isArray(data) ? data : data.articles;
+
+    if (!Array.isArray(articles)) {
+      throw new Error("文章資料格式錯誤");
+    }
 
     articleGrid.innerHTML = "";
 
@@ -28,7 +37,7 @@ async function loadArticles() {
       articleGrid.appendChild(card);
     });
   } catch (error) {
-    console.error("Fetch error:", error); // 這行能讓你在瀏覽器按 F12 看到具體錯誤
+    console.error("Fetch error:", error);
     articleGrid.innerHTML = "<p>載入失敗，請確認資料庫連線或後端狀態!!</p>";
   }
 }
