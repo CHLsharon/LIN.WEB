@@ -941,14 +941,7 @@ nav a {
     margin: 0 15px;
     overflow: hidden;
 }
-/* article 文章標題 */
-#topArticleTitle {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 16px;
-    color: #374151;
-}
+
 
 
 
