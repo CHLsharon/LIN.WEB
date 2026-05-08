@@ -798,18 +798,6 @@ nav a {
   --reader-border: #d9dee7;
 }
 
-
-
-
-/* 新增：將按鈕封裝在一起的容器 */
-.reader-header-actions {
-    /* 核心 4：右側按鈕群組不可縮小，且固定在右邊 */
-    flex-shrink: 0 !important; 
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 /* 統一按鈕高度與風格，防止變醜 */
 .reader-save-btn, .reader-finish-btn {
   height: 38px;
@@ -824,18 +812,7 @@ nav a {
   align-items: center;
 }
 
-/* 存檔按鈕：維持原本的紫色邊框風格 */
-.reader-save-btn {
-  background: white;
-  color: #6a5acd;
-  border: 1.5px solid #6a5acd;
-}
 
-/* 完成閱讀按鈕：獨立的綠色風格 */
-.reader-finish-btn {
-  background-color: #28a745;
-  color: white;
-}
 
 /* 主體 */
 .reader-container {
@@ -973,12 +950,7 @@ nav a {
     color: #374151;
 }
 
-    .reader-label {
-      margin-right: 8px;
-      color: #6b7280;
-      font-size: 14px;
-      font-weight: 700;
-    }
+
 
     .reader-title-status strong {
       display: inline-block;

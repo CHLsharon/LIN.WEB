@@ -1,4 +1,4 @@
-@media (max-width: 1100px) {
+@media (max-width: 1400px) {
     body.article-reader-page {
     height: 100vh;
     margin: 0;
@@ -24,11 +24,29 @@
       min-height: 380px;
     }
 }
-/* 基本 */
-body.article-reader-page {
-  height: 100vh;
-  margin: 0;
-  overflow: hidden; /* 防止最外層出現雙捲軸 */
-  display: flex;
-  flex-direction: column;
+/*導覽列中的文字*/
+.reader-label {
+  margin-right: 8px;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 700;
 }
+/*將導覽列按鈕放一起的容器 */
+.reader-header-actions {
+    flex-shrink: 0 !important; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* 存檔按鈕：維持原本的紫色邊框風格 */
+.reader-save-btn {
+  background: white;
+  color: #6a5acd;
+  border: 1.5px solid #6a5acd;
+}
+/* 完成閱讀按鈕：獨立的綠色風格 */
+.reader-finish-btn {
+  background-color: #28a745;
+  color: white;
+}
+

@@ -6,6 +6,7 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>文章閱讀｜共讀 AI</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="article.css" />
 </head>
 <body class="article-reader-page">
   <!-- 浮動工具列 -->
@@ -18,12 +19,10 @@
   <!-- 導覽列 -->
   <header class="reader-top-bar">
     <a href="articles.html" class="reader-back-btn">← 返回文章列表</a>
-    
     <div class="reader-title-status">
         <span class="reader-label">當前文章</span>
         <div id="topArticleTitle" class="article-content-embedded">載入中...</div>
     </div>
-
     <div class="reader-header-actions">
         <button class="reader-save-btn" type="button" onclick="saveNote(true)">存檔</button>
         <button class="reader-finish-btn" type="button" onclick="startQuiz()">完成閱讀</button>
