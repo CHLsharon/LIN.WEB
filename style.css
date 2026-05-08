@@ -173,26 +173,6 @@ nav a {
   line-height: 1.7;
 }
 
-.reading-preview {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 24px;
-  background: white;
-  border-radius: 28px;
-  padding: 40px;
-.reader-tab.active {
-  background: white;
-  color: var(--reader-primary);
-  border-radius: 8px;
-}}
-
-.reading-preview p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #4b5563;
-}
-
 .preview-box {
   background: #f9fafb;
   border: 2px solid #e5e7eb;

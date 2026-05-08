@@ -197,10 +197,12 @@
     font-weight: 800;
     cursor: pointer;
 }
+
 .reader-tab.active {
     background: #ffffff;
     color: var(--reader-primary);
     border-bottom-color: var(--reader-primary);
+    border-radius: 8px;
 }
 /* 原文內容區 */
 .reader-content-body {
