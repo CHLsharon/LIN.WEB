@@ -1,6 +1,6 @@
 @media (max-width: 1400px) {
     body.article-reader-page {
-    height: 100vh;
+    height: 70vh;
     margin: 0;
     overflow: hidden; /* 防止最外層出現雙捲軸 */
     display: flex;
