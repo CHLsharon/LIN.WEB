@@ -1029,6 +1029,7 @@ body.article-reader-page {
       background: #ffffff;
       border-right: 1px solid var(--reader-border);
       overflow: hidden;
+      position: relative;
     }
 
 
@@ -1366,6 +1367,7 @@ body.article-reader-page {
         display: flex;
         flex-direction: column;
     }
+ /*article文章上面標頭列*/   
 .reader-top-bar {
     flex-shrink: 0;
     height: 64px;
@@ -1379,10 +1381,6 @@ body.article-reader-page {
     padding: 0 20px;
     z-index: 1000;
 }
-
-    .reader-left-panel {
-      position: relative;
-    }
     .note-editor {
       height: 48vh;
       min-height: 380px;
