@@ -15,14 +15,10 @@
       <h1>登入帳號</h1>
       <p class="auth-desc">登入後即可使用閱讀紀錄、筆記與 AI 學習助手。</p>
       <form id="loginForm">
-        <label>
-          電子信箱
-          <input type="email" placeholder="請輸入電子信箱" required />
-        </label>
-        <label>
-          密碼
-          <input type="password" placeholder="請輸入密碼" required />
-        </label>
+        <label for="email">電子信箱</label>
+        <input type="email" id="email" name="email" placeholder="請輸入電子信箱" required />
+        <label for="password">密碼</label>
+        <input type="password" id="password" name="password" placeholder="請輸入密碼" required />
         <div class="auth-row">
           <label class="check-label">
             <input type="checkbox" />
