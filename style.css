@@ -1208,39 +1208,3 @@ nav a {
     margin-top: 10px; /* 給分頁留出空間 */
     position: relative;
 }
-
-/* 測驗彈窗樣式 */
-.quiz-modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-.option-btn {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #f9f9f9;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.option-btn:hover { 
-  background: #eef2f7; 
-  border-color: #3498db; 
-}
-
-.quiz-feedback {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    line-height: 1.6;
-}
-
-.feedback-success { background: #d4edda; color: #155724; }
-.feedback-error { background: #f8d7da; color: #721c24; }
