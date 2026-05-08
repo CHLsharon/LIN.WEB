@@ -9,7 +9,7 @@
  /*article文章上面標頭列*/   
     .reader-top-bar {
         flex-shrink: 0;
-        height: 64px;
+        height: 40px;
         background: white;
         border-bottom: 1px solid var(--reader-border);
         display: flex;
