@@ -18,6 +18,10 @@
         padding: 0 20px;
         z-index: 1000;
     }
+    .note-editor {
+      height: 48vh;
+      min-height: 380px;
+    }
 }
 /*導覽列中的文字*/
 .reader-label {
