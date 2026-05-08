@@ -46,7 +46,26 @@
 }
 /* 完成閱讀按鈕：獨立的綠色風格 */
 .reader-finish-btn {
-  background-color: #28a745;
+  background-color: #25e151;
   color: white;
 }
-
+/*右側工具列的標題*/
+.floating-toolbar {
+  position: absolute;
+  display: flex;
+  background: #ce0000;
+  padding: 5px;
+  border-radius: 8px;
+  z-index: 2000;
+  gap: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+.floating-toolbar button {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 5px;
+}

@@ -1229,27 +1229,6 @@ nav a {
       font-weight: 800;
     }
 
-    .floating-toolbar {
-      position: absolute;
-      display: none;
-      background: #333;
-      padding: 5px;
-      border-radius: 8px;
-      z-index: 2000;
-      gap: 5px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
-    }
-
-    .floating-toolbar button {
-      background: transparent;
-      border: none;
-      color: white;
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 13px;
-      border-radius: 5px;
-    }
-
     .ai-selected-text {
       margin-bottom: 14px;
       padding: 12px 14px;
