@@ -147,13 +147,19 @@ function saveChatToNote() {
 // 文章段落處理
 // ========================
 function formatArticleContent(content) {
-  const safeContent = escapeHTML(content);
+  if (!content) return "載入中...";
+
+  // 如果沒有定義 escapeHTML，可以用這個簡易版代替
+  const safeContent = content
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 
   return safeContent
-    .replace(/([。！？!?])/g, "$1|")
+    .replace(/([。！？!?\n])/g, "$1|") // 💡 加入 \n，連換行也拆分
     .split("|")
     .map((sentence) => sentence.trim())
-    .filter((sentence) => sentence !== "")
+    .filter((sentence) => sentence.length > 0)
     .map((sentence) => `<p class="article-paragraph">${sentence}</p>`)
     .join("");
 }
