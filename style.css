@@ -816,8 +816,6 @@ nav a {
 }
 
 
-
-
 /* Tab 按鈕 */
 .reader-tab {
   flex: none;              /* 不要自動拉伸 */
@@ -827,14 +825,6 @@ nav a {
   background: transparent;
   font-weight: 800;
   cursor: pointer;
-}
-
-/* 文章 */
-.article-body {
-  position: relative;
-  isolation: isolate;
-  font-size: 20px;
-  line-height: 2;
 }
 
 .article-paragraph,
@@ -889,7 +879,6 @@ nav a {
   background: white;
 }
 
-    
 
 .reader-title-status {
     /* 核心 2：讓標題佔據剩餘空間，但要有彈性 */
@@ -901,10 +890,6 @@ nav a {
     margin: 0 15px;
     overflow: hidden;
 }
-
-
-
-
     .reader-title-status strong {
       display: inline-block;
       max-width: min(720px, 100%);
@@ -927,17 +912,6 @@ nav a {
     }
 
     
-    .reader-container {
-      width: 100vw;
-      max-width: none !important;
-      height: calc(100vh - 60px);
-      margin: 60px 0 0 0 !important;
-      padding: 0 !important;
-      display: grid;
-      grid-template-columns: minmax(520px, 58%) minmax(380px, 42%);
-      overflow: hidden;
-      box-sizing: border-box;
-    }
 
     .reader-left-panel {
       min-width: 0;
