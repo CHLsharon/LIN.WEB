@@ -5,7 +5,6 @@ function getArticleId() {
   const params = new URLSearchParams(window.location.search);
   return params.get("id");
 }
-
 let currentFontSize = 20;
 let currentArticleTitle = "";
 let selectedTextCache = "";
@@ -23,40 +22,48 @@ async function loadArticle() {
   const currentArticleEl = document.getElementById("currentArticle");
 
   try {
-    if (!articleId) {
-      throw new Error("網址缺少文章 ID");
-    }
+    if (!articleId) throw new Error("網址缺少文章 ID");
 
+    // 🚩 檢查點 1：確保路徑在 Vercel 上可被訪問
+    // 如果你是放靜態 JSON 檔，路徑應改為 `/articles/${articleId}.json`
     const res = await fetch(`/api/chat/articles/${articleId}`);
+    
+    if (!res.ok) throw new Error(`連線錯誤: ${res.status}`);
+    
     const data = await res.json();
-
-    console.log("單篇文章 API 回傳：", data);
-
     const article = data.article ? data.article : data;
 
-    if (!res.ok || !article || !article.title) {
-      throw new Error(data.error || data.message || "文章資料格式錯誤");
-    }
+    if (!article || !article.title) throw new Error("文章格式錯誤");
 
     window.currentArticle = article;
 
-    if (titleEl) {
-      titleEl.textContent = article.title;
-    }
-
-    if (currentArticleEl) {
-      currentArticleEl.textContent = article.title;
-    }
+    if (titleEl) titleEl.textContent = article.title;
+    if (currentArticleEl) currentArticleEl.textContent = article.title;
 
     if (contentEl) {
-      contentEl.textContent = article.content || "";
+      // 🚩 檢查點 2：將純文字轉換為 HTML 段落，高亮模式才能運作
+      if (article.content) {
+        // 依照兩個換行符號切割段落，並包上 <p> 標籤
+        const paragraphs = article.content
+          .split(/\n+/) 
+          .map(p => `<p>${p.trim()}</p>`)
+          .join("");
+        contentEl.innerHTML = paragraphs; 
+      } else {
+        contentEl.innerHTML = "<p>暫無內容</p>";
+      }
     }
+
+    // 🚩 檢查點 3：內容載入後，重新初始化高亮功能的事件監聽
+    if (typeof initHighlightMode === "function") {
+        initHighlightMode();
+    }
+
   } catch (error) {
     console.error("載入單篇文章失敗：", error);
-
-    if (titleEl) titleEl.textContent = "載入失敗";
-    if (currentArticleEl) currentArticleEl.textContent = "載入失敗";
-    if (contentEl) contentEl.textContent = "載入失敗";
+    const errorMsg = "載入失敗，請確認網址或 API 是否正確";
+    if (titleEl) titleEl.textContent = errorMsg;
+    if (contentEl) contentEl.innerHTML = `<p style="color:red">${error.message}</p>`;
   }
 }
 
