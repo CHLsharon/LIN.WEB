@@ -1,0 +1,19 @@
+.auth-page {
+  min-height: calc(100vh - 48px);
+  display: grid;
+  place-items: center;
+}
+/*元素的位置、間距、對齊方式*/
+.auth-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+/*文字的顏色、粗細、裝飾*/
+.auth-row a,
+.auth-switch a {
+  color: #2563eb;
+  font-weight: 800;
+  text-decoration: none;
+}

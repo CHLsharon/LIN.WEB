@@ -427,11 +427,7 @@ nav a {
     font-size: 34px;
   }
 }
-.auth-page {
-  min-height: calc(100vh - 48px);
-  display: grid;
-  place-items: center;
-}
+
 
 .auth-card {
   width: min(100%, 480px);
@@ -474,20 +470,6 @@ nav a {
 .auth-card input:focus {
   outline: 3px solid #bfdbfe;
   border-color: #2563eb;
-}
-
-.auth-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: center;
-}
-
-.auth-row a,
-.auth-switch a {
-  color: #2563eb;
-  font-weight: 800;
-  text-decoration: none;
 }
 
 .check-label {
