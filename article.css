@@ -9,19 +9,14 @@
  /*article文章上面標頭列*/   
     .reader-top-bar {
         flex-shrink: 0;
-        height: 40px;
+        height: 60px;
         background: white;
         border-bottom: 1px solid var(--reader-border);
         display: flex;
         align-items: center;
-        flex-wrap: nowrap !important; 
         justify-content: space-between;
         padding: 0 20px;
         z-index: 1000;
-    }
-    .note-editor {
-      height: 48vh;
-      min-height: 380px;
     }
 }
 /*導覽列中的文字*/
