@@ -56,13 +56,13 @@
     margin-left: 10px;
 }
 .reader-finish-btn:hover {
-    background-color: #2ecc71;
+    background-color: #1f914f;
 }
 /*右側工具列的標題*/
 .floating-toolbar {
   position: absolute;
   display: flex;
-  background: #5e3c3c;
+  background: #dad018;
   padding: 5px;
   border-radius: 8px;
   z-index: 2000;
