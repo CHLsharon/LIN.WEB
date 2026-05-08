@@ -9,7 +9,7 @@
  /*article文章上面標頭列*/   
     .reader-top-bar {
         flex-shrink: 0;
-        height: 64px;
+        height: 70px;
         background: white;
         border-bottom: 1px solid var(--reader-border);
         display: flex;
@@ -20,7 +20,7 @@
         z-index: 1000;
     }
     .note-editor {
-      height: 48vh;
+      height: 50vh;
       min-height: 380px;
     }
 }
@@ -46,8 +46,17 @@
 }
 /* 完成閱讀按鈕：獨立的綠色風格 */
 .reader-finish-btn {
-  background-color: #25e151;
-  color: white;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.reader-finish-btn:hover {
+    background-color: #2ecc71;
 }
 /*右側工具列的標題*/
 .floating-toolbar {

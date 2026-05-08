@@ -1324,21 +1324,7 @@ nav a {
     margin-top: 10px; /* 給分頁留出空間 */
     position: relative;
 }
-/* 完成閱讀按鈕顏色 */
-.reader-finish-btn {
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-left: 10px;
-}
 
-.reader-finish-btn:hover {
-    background-color: #2ecc71;
-}
 
 /* 測驗彈窗樣式 */
 .quiz-modal {
