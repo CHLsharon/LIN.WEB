@@ -14,14 +14,14 @@
         border-bottom: 1px solid var(--reader-border);
         display: flex;
         align-items: center;
-        flex-wrap: nowrap !important; 
+        flex-wrap: nowrap ; 
         justify-content: space-between;
         padding: 0 20px;
         z-index: 1000;
     }
     .note-editor {
       height: 50vh;
-      min-height: 380px;
+      min-height: 80px;
     }
 }
 /*導覽列中的文字*/
@@ -54,9 +54,6 @@
     cursor: pointer;
     font-weight: bold;
     margin-left: 10px;
-}
-.reader-finish-btn:hover {
-    background-color: #1f914f;
 }
 /*右側工具列的標題*/
 .floating-toolbar {
