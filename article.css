@@ -1,3 +1,17 @@
+:root {
+  font-family: system-ui, "Noto Sans TC", sans-serif;
+  color: #1f2937;
+  background: #f3f4f6;
+  --reader-primary: #764ba2;
+  --reader-paper: #fdf6e3;
+  --reader-sidebar: #2c3e50;
+  --reader-border: #d9dee7;
+  --reader-toolbar-height: 50px;
+}
+* {
+  box-sizing: border-box;
+}
+
 @media (max-width: 1400px) {
     body.article-reader-page {
     height: 100vh;
