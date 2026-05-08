@@ -17,18 +17,15 @@ async function loadArticle() {
   const params = new URLSearchParams(window.location.search);
   const articleId = params.get("id");
 
-  const titleEl = document.getElementById("articleTitle");
+  // 1. 同步 HTML 內的 ID：包含導覽列的 topArticleTitle
+  const topTitleEl = document.getElementById("topArticleTitle"); 
   const contentEl = document.getElementById("articleContent");
-  const currentArticleEl = document.getElementById("currentArticle");
 
   try {
     if (!articleId) throw new Error("網址缺少文章 ID");
 
-    // 🚩 檢查點 1：確保路徑在 Vercel 上可被訪問
-    // 如果你是放靜態 JSON 檔，路徑應改為 `/articles/${articleId}.json`
     const res = await fetch(`/api/chat/articles/${articleId}`);
-    
-    if (!res.ok) throw new Error(`連線錯誤: ${res.status}`);
+    if (!res.ok) throw new Error(`API 請求失敗: ${res.status}`);
     
     const data = await res.json();
     const article = data.article ? data.article : data;
@@ -37,32 +34,30 @@ async function loadArticle() {
 
     window.currentArticle = article;
 
-    if (titleEl) titleEl.textContent = article.title;
-    if (currentArticleEl) currentArticleEl.textContent = article.title;
+    // 2. 更新導覽列標題
+    if (topTitleEl) {
+      topTitleEl.textContent = article.title;
+    }
 
+    // 3. 解決原文內容與高亮功能不見的問題
     if (contentEl) {
-      // 🚩 檢查點 2：將純文字轉換為 HTML 段落，高亮模式才能運作
       if (article.content) {
-        // 依照兩個換行符號切割段落，並包上 <p> 標籤
-        const paragraphs = article.content
-          .split(/\n+/) 
-          .map(p => `<p>${p.trim()}</p>`)
+        // 將純文字內容切分為 <p> 標籤，這樣 CSS 的「段落聚焦」才抓得到元素
+        contentEl.innerHTML = article.content
+          .split(/\n+/)
+          .map(p => `<p class="article-paragraph">${p.trim()}</p>`)
           .join("");
-        contentEl.innerHTML = paragraphs; 
-      } else {
-        contentEl.innerHTML = "<p>暫無內容</p>";
+      }
+      
+      // 4. 重要：內容渲染後，重新啟動高亮監聽功能
+      if (typeof initHighlightFeature === "function") {
+          initHighlightFeature();
       }
     }
 
-    // 🚩 檢查點 3：內容載入後，重新初始化高亮功能的事件監聽
-    if (typeof initHighlightMode === "function") {
-        initHighlightMode();
-    }
-
   } catch (error) {
-    console.error("載入單篇文章失敗：", error);
-    const errorMsg = "載入失敗，請確認網址或 API 是否正確";
-    if (titleEl) titleEl.textContent = errorMsg;
+    console.error("載入失敗：", error);
+    if (topTitleEl) topTitleEl.textContent = "載入失敗";
     if (contentEl) contentEl.innerHTML = `<p style="color:red">${error.message}</p>`;
   }
 }
