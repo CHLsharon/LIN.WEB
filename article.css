@@ -21,7 +21,7 @@
     }
     .note-editor {
       height: 50vh;
-      min-height: 80px;
+      min-height: 380px;
     }
 }
 .reader-back-btn {
@@ -111,7 +111,7 @@
     margin-top: 20px;
 }
 /**/
-/*內容*/
+/*整體內容*/
 .reader-container {
   display: grid;
   grid-template-columns: 55% 45%;
@@ -139,7 +139,7 @@
 .reader-tab {
     flex: 1;
     border: 0;
-    border-bottom: 3px solid transparent;
+    border-bottom: 1px solid transparent;
     background: transparent;
     color: #666;
     font-weight: 800;
@@ -149,4 +149,19 @@
     background: #ffffff;
     color: var(--reader-primary);
     border-bottom-color: var(--reader-primary);
+}
+
+/* 原文內容區 */
+.reader-content-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+.article-content-embedded {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
 }
