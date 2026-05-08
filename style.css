@@ -797,7 +797,6 @@ nav a {
   --reader-primary: #764ba2;
   --reader-border: #d9dee7;
 }
-
 /* 統一按鈕高度與風格，防止變醜 */
 .reader-save-btn, .reader-finish-btn {
   height: 38px;
@@ -925,11 +924,7 @@ nav a {
   background: white;
 }
 
-    .reader-back-btn {
-      color: var(--reader-primary);
-      font-weight: 800;
-      text-decoration: none;
-    }
+    
 
 .reader-title-status {
     /* 核心 2：讓標題佔據剩餘空間，但要有彈性 */

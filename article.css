@@ -24,11 +24,15 @@
       min-height: 80px;
     }
 }
+.reader-back-btn {
+    color: var(--reader-primary);
+    font-weight: 800;
+    text-decoration: none;
+}
 /*導覽列中的文字*/
 .reader-label {
-
   margin-right: 8px;
-  color: #2258c4;
+  color: #3b3b3b;
   font-size: 14px;
   font-weight: 700;
 }
@@ -42,8 +46,8 @@
 /* 存檔按鈕：維持原本的紫色邊框風格 */
 .reader-save-btn {
   background: white;
-  color: #6a5acd;
-  border: 1.5px solid #6a5acd;
+  color: var(--reader-primary);
+  border: 1.5px solid var(--reader-primary);
 }
 /* 完成閱讀按鈕：獨立的綠色風格 */
 .reader-finish-btn {
