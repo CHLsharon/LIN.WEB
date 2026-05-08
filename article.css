@@ -1,6 +1,6 @@
 @media (max-width: 1400px) {
     body.article-reader-page {
-    height: 70vh;
+    height: 100vh;
     margin: 0;
     overflow: hidden; /* 防止最外層出現雙捲軸 */
     display: flex;
@@ -87,4 +87,26 @@
     text-overflow: ellipsis;
     font-size: 16px;
     color: #374151;
+}
+/*小考*/
+.quiz-modal.hidden { display: none; }
+.quiz-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
 }
