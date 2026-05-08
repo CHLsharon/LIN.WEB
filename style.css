@@ -6,7 +6,7 @@
   --reader-paper: #fdf6e3;
   --reader-sidebar: #2c3e50;
   --reader-border: #d9dee7;
-  --reader-toolbar-height: 52px;
+  --reader-toolbar-height: 50px;
 }
 * {
   box-sizing: border-box;
@@ -181,7 +181,11 @@ nav a {
   background: white;
   border-radius: 28px;
   padding: 40px;
-}
+.reader-tab.active {
+  background: white;
+  color: var(--reader-primary);
+  border-radius: 8px;
+}}
 
 .reading-preview p {
   font-size: 18px;
@@ -813,32 +817,6 @@ nav a {
 
 
 
-/* 主體 */
-.reader-container {
-  display: grid;
-  grid-template-columns: 58% 42%;
-  height: calc(100vh - 60px);
-  margin-top: 60px;
-}
-
-/* 左側面板 */
-.reader-left-panel {
-  display: flex;
-  flex-direction: column;
-  background: white;
-}
-
-/* Tab 切換列 */
-.reader-tab-group {
-  display: flex;
-  gap: 8px;
-  height: var(--reader-toolbar-height, 52px); /* 預設高度 52px */
-  min-height: var(--reader-toolbar-height, 52px);
-  background: #f4f4f4;
-  border-bottom: 1px solid var(--reader-border);
-  flex-shrink: 0;
-  padding: 6px 10px;
-}
 
 /* Tab 按鈕 */
 .reader-tab {
@@ -851,11 +829,7 @@ nav a {
   cursor: pointer;
 }
 
-.reader-tab.active {
-  background: white;
-  color: var(--reader-primary);
-  border-radius: 8px;
-}
+
 
 /* 內容區 */
 .reader-content-body {
@@ -983,23 +957,6 @@ nav a {
       border-right: 1px solid var(--reader-border);
       overflow: hidden;
       position: relative;
-    }
-
-
-    .reader-tab {
-      flex: 1;
-      border: 0;
-      border-bottom: 3px solid transparent;
-      background: transparent;
-      color: #666;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .reader-tab.active {
-      background: #ffffff;
-      color: var(--reader-primary);
-      border-bottom-color: var(--reader-primary);
     }
 
     .reader-content-body {
@@ -1324,8 +1281,6 @@ nav a {
     align-items: center;
     z-index: 1000;
 }
-
-
 .option-btn {
     padding: 12px;
     text-align: left;
@@ -1336,7 +1291,10 @@ nav a {
     transition: 0.2s;
 }
 
-.option-btn:hover { background: #eef2f7; border-color: #3498db; }
+.option-btn:hover { 
+  background: #eef2f7; 
+  border-color: #3498db; 
+}
 
 .quiz-feedback {
     margin-top: 20px;

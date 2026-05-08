@@ -110,3 +110,43 @@
     gap: 10px;
     margin-top: 20px;
 }
+/**/
+/*內容*/
+.reader-container {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+}
+/* 左側的面板 */
+.reader-left-panel {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+/* Tab 切換列 */
+.reader-tab-group {
+  display: flex;
+  gap: 8px;
+  height: var(--reader-toolbar-height);
+  min-height: var(--reader-toolbar-height);
+  background: #f4f4f4;
+  border-bottom: 1px solid var(--reader-border);
+  flex-shrink: 0;
+  padding: 6px 10px;
+  justify-content: center;
+}
+.reader-tab {
+    flex: 1;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: #666;
+    font-weight: 800;
+    cursor: pointer;
+}
+.reader-tab.active {
+    background: #ffffff;
+    color: var(--reader-primary);
+    border-bottom-color: var(--reader-primary);
+}

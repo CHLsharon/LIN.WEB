@@ -484,7 +484,6 @@ async function startQuiz() {
   const questionText = document.getElementById("quizQuestion");
   const optionsContainer = document.getElementById("quizOptions");
   const feedback = document.getElementById("quizFeedback");
-
   // 取得當前文章資訊
   const articleTitle = document.getElementById("topArticleTitle")?.innerText || "未知文章";
   const articleContent = document.getElementById("articleContent")?.innerText || "";
