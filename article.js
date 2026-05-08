@@ -306,72 +306,43 @@ function switchLeftTab(tab) {
   if (activeTab) activeTab.classList.add("active");
 }
 
-// ========================
-// 高亮模式：段落沉浸聚焦
-// ========================
+// 1. 開關模式
 function toggleFocusMode() {
   const articleBody = document.getElementById("articleBody");
   const btn = document.getElementById("focusModeBtn");
-  
-  // 💡 取得分頁容器（請根據你的 HTML id 修改）
-  const tabContainer = document.querySelector(".left-tabs-container"); 
-
   if (!articleBody || !btn) return;
+
   isFocusMode = !isFocusMode;
-
-  // 💡 修正：只切換內容區的 class，不要影響到外層分頁
   articleBody.classList.toggle("focus-mode", isFocusMode);
-  // 💡 如果你的 CSS 會導致標籤消失，可以在這裡強制控制它顯示
-  if (tabContainer) {
-    tabContainer.style.display = "flex"; 
-  }
-  btn.textContent = isFocusMode ? "高亮模式：開" : "高亮模式：關";
-  if (!isFocusMode) {
-    clearFocusedParagraph();
-  }
+  
+  btn.textContent = isFocusMode ? "高亮模式：開" : "高亮模式 : 關";
+
+  if (!isFocusMode) clearFocusedParagraph();
 }
 
+// 2. 統一監聽邏輯 (合併了 initParagraphFocus 裡面的兩個監聽)
 function initParagraphFocus() {
-  const articleBody = document.getElementById("articleBody");
-  if (!articleBody) return;
-// 點擊段落時聚焦
-  articleBody.addEventListener("click", function (e) {
-    const target = e.target.closest(".article-paragraph");
-    if (!target) return;
+  document.addEventListener("click", function (e) {
+    const articleBody = document.getElementById("articleBody");
+    if (!articleBody || !isFocusMode) return; // 沒開啟模式就不運作
 
-    articleBody.querySelectorAll(".article-paragraph").forEach((p) => {
-      p.classList.remove("focused");
-    });
+    const targetParagraph = e.target.closest(".article-paragraph");
 
-    target.classList.add("focused");
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-    e.stopPropagation();
+    if (targetParagraph) {
+      // 點擊段落：切換高亮 + 捲動到中間
+      articleBody.querySelectorAll(".article-paragraph").forEach(p => p.classList.remove("focused"));
+      targetParagraph.classList.add("focused");
+      targetParagraph.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else if (!e.target.closest("#focusModeBtn")) {
+      // 點擊外面且不是按按鈕：清除高亮
+      clearFocusedParagraph();
+    }
   });
-
-// 或者更簡單：在整個 document 上監聽
-document.addEventListener("click", function (e) {
-  const articleBody = document.getElementById("articleBody");
-  if (!articleBody) return;
-
-  // 如果點擊的不是段落，也不是 focusModeBtn，就清除聚焦
-  if (!e.target.closest(".article-paragraph") &&
-      !e.target.closest("#focusModeBtn")) {
-    clearFocusedParagraph();
-  }
-});
 }
-function clearFocusedParagraph() {
-  const articleBody = document.getElementById("articleBody");
-  if (!articleBody) return;
 
-  articleBody.querySelectorAll(".article-paragraph").forEach((p) => {
-    p.classList.remove("focused");
-  });
+// 3. 清除工具
+function clearFocusedParagraph() {
+  document.querySelectorAll(".article-paragraph").forEach(p => p.classList.remove("focused"));
 }
 
 // ========================
@@ -398,18 +369,15 @@ function applyHighlight() {
     // 使用黃色作為預設螢光筆顏色
     document.execCommand('backColor', false, '#ffeb3b');
 }
-
 // 2. 套用文字顏色
 function applyTextColor() {
     const color = document.getElementById('textColorPicker').value;
     document.execCommand('foreColor', false, color);
 }
-
 // 3. 底線
 function underlineText() {
     document.execCommand('underline', false, null);
 }
-
 // 4. 清除格式
 function clearFormat() {
     document.execCommand('removeFormat', false, null);
