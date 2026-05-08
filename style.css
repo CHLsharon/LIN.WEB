@@ -858,11 +858,7 @@ nav a {
   position: relative;
 }
 
-/* AI */
-.ai-result {
-  background: #f8fafc;
-  padding: 16px;
-}
+
 
 /* 筆記 */
 .note-editor {
@@ -1024,17 +1020,7 @@ nav a {
       cursor: pointer;
     }
 
-    .ai-result {
-      margin-top: 18px;
-      min-height: 180px;
-      max-height: calc(100vh - 270px);
-      overflow-y: auto;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 18px;
-      line-height: 1.8;
-    }
+    
 
     .note-editor {
       min-width: 0;
