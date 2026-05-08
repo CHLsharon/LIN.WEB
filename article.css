@@ -26,6 +26,7 @@
 }
 /*導覽列中的文字*/
 .reader-label {
+
   margin-right: 8px;
   color: #6b7280;
   font-size: 14px;
@@ -36,7 +37,7 @@
     flex-shrink: 0 !important; 
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 2px;
 }
 /* 存檔按鈕：維持原本的紫色邊框風格 */
 .reader-save-btn {
