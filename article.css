@@ -53,7 +53,7 @@
 .floating-toolbar {
   position: absolute;
   display: flex;
-  background: #ce0000;
+  background: #5e3c3c;
   padding: 5px;
   border-radius: 8px;
   z-index: 2000;
