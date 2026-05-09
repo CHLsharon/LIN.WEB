@@ -42,7 +42,7 @@
 
       try {
         // 2. 發送登入請求到後端 (請確保後端已開啟並使用 Live Server 啟動網頁)
-        const response = await fetch("api/login.js", {
+        const response = await fetch("api/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -67,6 +67,10 @@
         alert("無法連線至伺服器，請確保後端已啟動。");
       }
     });
+    if (data.success) {
+    localStorage.setItem('userId', data.userId);
+    window.location.href = "dashboard.html"; // 確保這個跳轉路徑正確
+    }
   </script>
 </body>
 </html>
