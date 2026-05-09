@@ -2,13 +2,7 @@
   "name": "lin-web",
   "version": "1.0.0",
   "description": "LIN.WEB backend for Vercel",
-  "main": "api/index.js",
-  "scripts": {
-    "start": "node api/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "main": "api/login.js", 
   "type": "commonjs",
   "dependencies": {
     "@google-cloud/text-to-speech": "^6.4.0",
