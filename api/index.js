@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
 require("dotenv").config();
-
 // 注意：官方套件名稱通常是 @google/generative-ai
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
